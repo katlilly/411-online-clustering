@@ -1,4 +1,4 @@
-# Group project for INFO411 Machine Learning and Data Mining
+## Group project for INFO411 Machine Learning and Data Mining
 
 A presentation on this paper:
 
