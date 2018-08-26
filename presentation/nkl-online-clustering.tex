@@ -13,19 +13,46 @@
 \section[Outline]{}
 \frame{\tableofcontents}
 
-\section{Introduction, background - Noel's bit}
-\subsection{Overview of the Beamer Class}
+\section{Background - Noel's bit}
+
 \frame
 {
-  \frametitle{Features of the Beamer Class}
-
-  some text
+  \frametitle{Background - Data stream model}
   
+  Data stream are mainly preferred when models are based around a large data stream:
+
   \begin{itemize}
-  \item Normal LaTeX class.
-  \item Easy overlays.
-  \item No external programs needed.      
+    \item large volume of data is arriving continuously.
+    \item unnecessary or impractical to store data in memory.
+    \newline
   \end{itemize}
+
+  Data stream models are mainly restricted by:
+  \begin{itemize}
+    \item in order access to data (as they arrive).
+    \item small memory consumption.
+    \newline
+  \end{itemize}
+
+  This paper by O'Callaghan et al. (2002) describes a streaming algorthim that effectively clusters large data streams.
+
+  %NOTES:
+  % 
+  % dataset -> stored set of data, appropriate for clustering models that query data set again and again.
+  % data stream -> approriate model when large volume of data arrives continuously
+  % item 1: 
+  % item 2: 
+  % item 3: random access to memory not allowed.
+  % item 4: limited amount of information can be stored.
+  % challenge is to perform meaningful computations within these restrictions.
+}
+
+\frame
+{
+  \frametitle{Background - Related Works}
+  
+
+  %NOTES:
 }
 
 \section{The new algorithm described in this paper - Kat's bit}
@@ -37,7 +64,6 @@
   \item  blah blah
   \end{itemize}
 }
-
 
 \section{Comparison with existing methods - Loren's bit}
 \frame
@@ -51,5 +77,10 @@
   \end{itemize}
 }
 
+\frame[t]{
+  \frametitle{References}
 
+  O'Callaghan, L., Mishra, N., Meyerson, A., Guha, S. \& Motwani, R. (2002). \textit{Streaming-data algorithms for high-quality clustering.} In proceedings of the 18th International Conference on Data Engineering. Available from: http://ieeexplore.ieee.org/document/994785/.
+}
+  
 \end{document}
