@@ -2,9 +2,9 @@
 
 % \usepackage{beamerthemesplit} // Activate for custom appearance
 
-\title{INFO411 Presentation \\ Streaming-Data Algorithms for High-Quality Clustering}
-\author{Noel Park, Kat Lilly and Loren Kersey}
-\date{\today}
+\title{{\small INFO 411 presentation on:} \\ \bigskip Callaghan et al. (2002) {\em Streaming-Data Algorithms for
+  High-Quality Clustering}} \author{Noel Park, Kat Lilly and Loren
+  Kersey} \date{\today}
 
 \begin{document}
 
@@ -34,7 +34,8 @@
     \newline
   \end{itemize}
 
-  This paper by O'Callaghan et al. (2002) describes a streaming algorthim that effectively clusters large data streams.
+  This paper by O'Callaghan et al. (2002) describes a streaming
+  algorthim that effectively clusters large data streams.
 
   %NOTES:
   % 
@@ -56,13 +57,89 @@
 }
 
 \section{The new algorithm described in this paper - Kat's bit}
+
+\frame
+{
+  \frametitle{The Clustering Problem}
+
+  The problem this paper focuses on is the following version of the
+  clustering problem: 
+  
+  \begin{itemize}
+  \item given an integer {\em k} and a dataset {\em N}, find {\em k}
+    cluster centers an assign each {\em n} to the nearest centre
+  \item measure the quality of the clustering by the sum of the
+    squared distances (SSQ) of the data points to their assigned centers.
+  \item Find an optimal or near optimal solution by minimising SSQ.
+  \end{itemize}
+
+  The general K-median problem is an NP-hard problem, but there are
+  various algorithms for SSQ minimisation that produce near-optimal
+  solutions in near-linear time.
+
+  \bigskip
+  This paper describes a new such algorithm suitable for streaming
+  data.
+  
+}
+
+\frame
+{
+  \frametitle{Facility Location Problem}
+
+  Instead of specifying a limit on the value of {\em k}, impose
+  a cost for each cluster center (called a `facility' here).
+
+  \bigskip
+  The aim now is to minimise both the distance metric and the
+  sum of the facility costs,
+  \begin{itemize}
+  \item so long as a suitable value for the facility cost is
+    chosen, an appropriate number of clusters be found.
+  \end{itemize}
+  \bigskip
+  Again this is an NP-hard problem, but several algorithms are
+  known that produce near-optimal solutions.
+
+  
+}
+
+
+\frame
+{
+  \frametitle{STREAM Algorithm}
+
+  The new algorithm described in this paper is called STREAM.
+
+  The deal with arriving data in small chunks - either the data
+  arrives that way or they wait until enough data arrives to deal wiht
+  it this way.
+
+  They use their new algorithm LSEARCH to cluster each chunk of data.
+
+ 
+
+}
+
 \frame
 {
   \frametitle{LSEARCH algorithm}
 
-  \begin{itemize}
-  \item  blah blah
+   \begin{itemize}
+  \item Once the clustering of each chunk is done, they original data
+    is discarded, and only the k cluster centers are stored. Each
+    cluster being weighted by the number of sum of the weights of its
+    members.
+
+  \item The number of points stored in memory at any given time is
+    {\em ik}, where {\em i} is the number of chunks of data processed
+    and {\em k} is the number of clusters.
+
+  \item If the number of points in memory becomes too large, at any
+    point we can cluster the {\em ik} clusters to reduce the data to
+    just {\em k} clusters.
   \end{itemize}
+
 }
 
 \section{Comparison with existing methods - Loren's bit}
@@ -77,10 +154,14 @@
   \end{itemize}
 }
 
+
 \frame[t]{
   \frametitle{References}
 
-  O'Callaghan, L., Mishra, N., Meyerson, A., Guha, S. \& Motwani, R. (2002). \textit{Streaming-data algorithms for high-quality clustering.} In proceedings of the 18th International Conference on Data Engineering. Available from: http://ieeexplore.ieee.org/document/994785/.
-}
+  O'Callaghan, L., Mishra, N., Meyerson, A., Guha, S. \& Motwani,
+  R. (2002). \textit{Streaming-data algorithms for high-quality
+    clustering.} In proceedings of the 18th International Conference
+  on Data Engineering. Available from:
+  http://ieeexplore.ieee.org/document/994785/.  }
   
 \end{document}
