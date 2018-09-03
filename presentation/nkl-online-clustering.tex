@@ -167,9 +167,8 @@
 {
   \frametitle{LSEARCH vs k-means}
   
-
-  
   \begin{columns}
+  
     \begin{column}{0.5\textwidth}
        \begin{itemize}
           \item{Generated 28 small data-sets with between 5 and 16 uniform density spheres}
@@ -178,14 +177,51 @@
           \item{Run LSEARCH and k-means 10 times over each data-set}
       \end{itemize}
     \end{column}
+    
     \begin{column}{0.5\textwidth}
         \begin{center}
-         \includegraphics[width=0.9\textwidth]{figures/k-means_clusters.png}      
+         \includegraphics[width=\textwidth]{figures/k-means_clusters.png}      
         \end{center}
     \end{column}
+    
   \end{columns}  
-  
 }
+
+\frame
+{
+  \frametitle{LSEARCH vs k-means - results}
+  
+  \begin{columns}
+  
+    \begin{column}{0.4\textwidth}
+    	  \begin{itemize}
+    	  	\item[]{k-means:
+    	  	  \begin{itemize}
+    	  	    \item{fails to distinguish two close centers}
+    	  	    \item{easily distracted by random noise}
+    	  	    \item{comparatively high variance in SSQ}
+    	  	  \end{itemize}
+    	  	}
+    	  	\item[]{LSEARCH:
+    	  	  \begin{itemize}
+    	  	    \item{low variance in SSQ across all data-sets, consistently close to optimal}
+    	  	  \end{itemize}
+    	  	}
+    	  \end{itemize}
+    	  
+    \end{column}
+    
+    \begin{column}{0.6\textwidth}
+        \begin{center}
+         \includegraphics[width=\textwidth]{figures/LSEARCH_vs_k-means.png}      
+        \end{center}
+    \end{column}
+    
+  \end{columns}  
+}
+
+
+
 
 \frame
 {
