@@ -90,6 +90,9 @@
 {
   \frametitle{Facility Location Problem}
 
+  One benefit of the algorithm described in this paper is that it is
+  flexible in the value of k.
+  
   Instead of specifying a limit on the value of {\em k}, impose
   a cost for each cluster center (called a `facility' here).
 
@@ -106,6 +109,20 @@
 
   
 }
+\frame
+{
+  \frametitle{Facility Location Problem}
+
+  Their solution makes use of an algorithm (CG) published previously,
+  but searches through a range of solutions with different values for
+  the cost of each facility to find the best value for the facilty
+  cost, then uses that cost to find the best value for k.
+
+  Their solution is guaranteed to find the correct value for k in a
+  dataset that is `naturally k-clusterable'.
+
+  
+}
 
 
 \frame
@@ -119,8 +136,6 @@
   it this way.
 
   They use their new algorithm LSEARCH to cluster each chunk of data.
-
- 
 
 }
 
@@ -144,6 +159,16 @@
   \end{itemize}
 
 }
+
+
+\frame
+{
+  \frametitle{LSEARCH algorithm}
+
+  
+
+}
+
 
 \section{Comparison with existing methods - Loren's bit}
 \frame
