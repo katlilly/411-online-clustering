@@ -2,6 +2,9 @@
 
 % \usepackage{beamerthemesplit} // Activate for custom appearance
 
+\usepackage{graphicx}
+
+
 \title{{\small INFO 411 presentation on:} \\ \bigskip Callaghan et al. (2002) {\em Streaming-Data Algorithms for
   High-Quality Clustering}} \author{Noel Park, Kat Lilly and Loren
   Kersey} \date{\today}
@@ -162,8 +165,34 @@
 
 \frame
 {
+  \frametitle{LSEARCH vs k-means}
+  
+
+  
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+       \begin{itemize}
+          \item{Generated 28 small data-sets with between 5 and 16 uniform density spheres}
+          \item{For each data-set, calculate SSQ to use as an upper-bound for the optimal SSQ}
+          \item{Overlay each data-set with random noise}
+          \item{Run LSEARCH and k-means 10 times over each data-set}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{center}
+         \includegraphics[width=0.9\textwidth]{figures/k-means_clusters.png}      
+        \end{center}
+    \end{column}
+  \end{columns}  
+  
+}
+
+\frame
+{
   \frametitle{STREAM vs BIRCH}
   BIRCH uses a CF-tree to compress a large set of data. The leaves of the CF-tree contain sufficient statistics for a subset of points. A clustering algorithm then clusters the leaf entries. 
+  
+  Both STREAM and BIRCH repeatedly pre-cluster the data. 
 }
 
 
