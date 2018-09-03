@@ -190,6 +190,7 @@
 \frame
 {
   \frametitle{LSEARCH vs k-means - results}
+  % Include results on high dimensional data-sets? Talks about how LSEARCH finds better solution in the same time it takes k-means to find a solution
   
   \begin{columns}
   
@@ -197,14 +198,14 @@
     	  \begin{itemize}
     	  	\item[]{k-means:
     	  	  \begin{itemize}
-    	  	    \item{fails to distinguish two close centers}
-    	  	    \item{easily distracted by random noise}
-    	  	    \item{comparatively high variance in SSQ}
+    	  	    \item{Fails to distinguish two close centers}
+    	  	    \item{Easily distracted by random noise}
+    	  	    \item{Comparatively high variance in SSQ}
     	  	  \end{itemize}
     	  	}
     	  	\item[]{LSEARCH:
     	  	  \begin{itemize}
-    	  	    \item{low variance in SSQ across all data-sets, consistently close to optimal}
+    	  	    \item{Low variance in SSQ across all data-sets, consistently close to optimal}
     	  	  \end{itemize}
     	  	}
     	  \end{itemize}
@@ -221,15 +222,50 @@
 }
 
 
-
-
 \frame
 {
   \frametitle{STREAM vs BIRCH}
-  BIRCH uses a CF-tree to compress a large set of data. The leaves of the CF-tree contain sufficient statistics for a subset of points. A clustering algorithm then clusters the leaf entries. 
-  
-  Both STREAM and BIRCH repeatedly pre-cluster the data. 
+%  BIRCH uses a CF-tree to compress a large set of data. The leaves of the CF-tree contain sufficient statistics for a subset of points. A clustering algorithm then clusters the leaf entries. Both STREAM and BIRCH repeatedly pre-cluster the data. 
+
+  \begin{itemize}
+	\item{Generated data-set with $50,000$ $40$-dimensional points, arranged in clusters with overlaid random noise.}
+	\item{Clustered the data-set 10 times using each of:
+	  \begin{itemize}
+	  	\item{BIRCH with k-means}
+	  	\item{BIRCH with LSEARCH}
+	  	\item{STREAM with k-means}
+	  	\item{STREAM with LSEARCH}
+	  \end{itemize}	   
+	}
+	\item{SSQ and CPU run-time were used as comparison factors}
+  \end{itemize}
+
 }
+
+\frame
+{
+  \frametitle{STREAM vs BIRCH - results}
+  
+  \begin{columns}
+  
+    \begin{column}{0.5\textwidth}
+    	   \begin{center}
+         \includegraphics[width=\textwidth]{figures/BIRCH_STREAM_SSQ.png}      
+       \end{center}
+    	  
+    \end{column}
+    
+    \begin{column}{0.5\textwidth}
+        \begin{center}
+         \includegraphics[width=\textwidth]{figures/BIRCH_STREAM_CPU.png}      
+        \end{center}
+    \end{column}
+  \end{columns}  
+  
+  \bigskip
+  STREAM with k-means gives the best balance between low CPU time and low SSQ. STREAM with LSEARCH finds the closest solution to optimal, but with the highest CPU time. BIRCH with k-means gives the best CPU time but the worst SSQ.
+}
+
 
 
 \frame[t]{
