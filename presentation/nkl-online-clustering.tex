@@ -145,13 +145,25 @@
 \section{Comparison with existing methods - Loren's bit}
 \frame
 {
-  \frametitle{Their results relative to other methods...}
-
+  \frametitle{Comparison with other methods}
+  To assess the performance of their new clustering and streaming algorithms, O'Callaghan et al. compare them to existing techniques.
+  
+  \bigskip 
   \begin{itemize}
-  \item stuff
-  \item nonsense
-  \item      
+  \item{LSEARCH performs a similar function to k-means}
+  \item{STREAM performs a similar function to BIRCH
+    \begin{itemize}
+      \item{BIRCH - balanced iterative reducing and clustering using hierarchies - is another streaming algorithm which uses a clustering algorithm as a sub-routine.}
+    \end{itemize}
+  }
+  	     
   \end{itemize}
+}
+
+\frame
+{
+  \frametitle{STREAM vs BIRCH}
+  BIRCH uses a CF-tree to compress a large set of data. The leaves of the CF-tree contain sufficient statistics for a subset of points. A clustering algorithm then clusters the leaf entries. 
 }
 
 
