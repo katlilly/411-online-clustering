@@ -25,15 +25,16 @@
 
   Datasets
   \begin{itemize}
-    \item large collection of stored data (static).
-    \item Appropriate for clustering that query dataset repeatedly.
+    \item Large volume of stored data (static).
+    \item Appropriate for querying model based on unchanging data.
+    \item Concept drift.
     \newline
   \end{itemize}
 
   Data stream:
   \begin{itemize}
-    \item large volume of data is arriving continuously (dynamic).
-    \item unnecessary or impractical to store data in memory.
+    \item Large volume continuously arriving data (dynamic).
+    \item Unnecessary, or impractical to store data in memory.
   \end{itemize}
 }
 
@@ -43,10 +44,12 @@
 
   Data stream models are mainly restricted by:
   \begin{itemize}
-    \item in order access to data (as they arrive).
-    \item small memory consumption.
+    \item process data sequential (no random access).
+    \item small memory consumption (limited storage).
     \newline
   \end{itemize}
+
+  The Challenge is to perform meaningful computations within these restrictions. \newline
 
   This paper by O'Callaghan et al. (2002) describes a streaming
   algorthim that effectively clusters large data streams.
