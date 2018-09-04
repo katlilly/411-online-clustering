@@ -5,9 +5,10 @@
 \usepackage{graphicx}
 
 
-\title{{\small INFO 411 presentation on:} \\ \bigskip Callaghan et al. (2002) {\em Streaming-Data Algorithms for
-  High-Quality Clustering}} \author{Noel Park, Kat Lilly and Loren
-  Kersey} \date{\today}
+\title{{\small INFO 411 presentation on:} \\ \bigskip Callaghan et
+  al. (2002) {\em Streaming-Data Algorithms for High-Quality
+    Clustering}} \author{Noel Park, Kat Lilly and Loren Kersey}
+\date{\today}
 
 \begin{document}
 
@@ -91,7 +92,7 @@
   
   \begin{itemize}
   \item given an integer {\em k} and a dataset {\em N}, find {\em k}
-    cluster centers an assign each {\em n} to the nearest centre
+    cluster centers and assign each {\em n} to the nearest centre
   \item measure the quality of the clustering by the sum of the
     squared distances (SSQ) of the data points to their assigned centers.
   \item Find an optimal or near optimal solution by minimising SSQ.
@@ -108,87 +109,126 @@
 }
 
 \frame
-{
-  \frametitle{Facility Location Problem}
+    {
+      \frametitle{Facility Location Problem}
 
-  One benefit of the algorithm described in this paper is that it is
-  flexible in the value of k.
-  
-  Instead of specifying a limit on the value of {\em k}, impose
-  a cost for each cluster center (called a `facility' here).
+      One benefit of the algorithm described in this paper is that it is
+      flexible in the value of {\em k}.
+      \begin{itemize}
+      \item Instead of specifying a limit on the value of {\em k}, impose
+        a cost for each cluster center (called a `facility' here).
+      \end{itemize}
 
-  \bigskip
-  The aim now is to minimise both the distance metric and the
-  sum of the facility costs,
-  \begin{itemize}
-  \item so long as a suitable value for the facility cost is
-    chosen, an appropriate number of clusters be found.
-  \end{itemize}
-  \bigskip
-  Again this is an NP-hard problem, but several algorithms are
-  known that produce near-optimal solutions.
+      \bigskip
+      The aim now is to minimise the sum of both the distance metrics and
+      the facility costs,
+      \begin{itemize}
+      \item so long as a suitable value for the facility cost is
+        chosen, an appropriate number of clusters will be found.
+      \end{itemize}
 
-  
-}
+      \bigskip
+      Again this is an NP-hard problem, but several algorithms are
+      known that produce near-optimal solutions.
+      
+    }
+
 \frame
-{
-  \frametitle{Facility Location Problem}
+    {
+      \frametitle{Finding an appropriate facility cost}
 
-  Their solution makes use of an algorithm (CG) published previously,
-  but searches through a range of solutions with different values for
-  the cost of each facility to find the best value for the facilty
-  cost, then uses that cost to find the best value for k.
+      Their solution is to set an upper and lower bound on the value of {\em z},
+      the facility cost, and perform a binary search within this range to
+      find a suitable value
+      \begin{itemize}
+      \item Lower bound: 0
+      \item Upper bound: calculated from the sum of the distances
+      \end{itemize}
 
-  Their solution is guaranteed to find the correct value for k in a
-  dataset that is `naturally k-clusterable'.
+      \bigskip
+      At each {\em z} value in this search they calculate a solution
+      \begin{itemize}
+      \item if that solution has the desired number of clusters they
+        have found a suitable {\em z} value
+      \end{itemize}
+      They then use this {\em z} value to find the best value for {\em k}.
 
-  
-}
+      \bigskip
+      Their solution is guaranteed to find the facility cost that will
+      result in the correct value for {\em k} in a dataset that is
+      `naturally k-clusterable'.
+
+      
+    }
 
 
 \frame
 {
   \frametitle{STREAM Algorithm}
 
-  The new algorithm described in this paper is called STREAM.
+  They call the new algorithm described in this paper `STREAM'.
 
-  The deal with arriving data in small chunks - either the data
-  arrives that way or they wait until enough data arrives to deal wiht
+  \bigskip
+  Data is clustered in small chunks - either the data
+  arrives this way or they wait until enough data arrives to deal with
   it this way.
 
-  They use their new algorithm LSEARCH to cluster each chunk of data.
+  \bigskip
+  Each chunk of data in the stream is clustered with their new
+  algorithm `LSEARCH'.
 
 }
 
-\frame
-{
-  \frametitle{LSEARCH algorithm}
-
-   \begin{itemize}
-  \item Once the clustering of each chunk is done, they original data
-    is discarded, and only the k cluster centers are stored. Each
-    cluster being weighted by the number of sum of the weights of its
-    members.
-
-  \item The number of points stored in memory at any given time is
-    {\em ik}, where {\em i} is the number of chunks of data processed
-    and {\em k} is the number of clusters.
-
-  \item If the number of points in memory becomes too large, at any
-    point we can cluster the {\em ik} clusters to reduce the data to
-    just {\em k} clusters.
-  \end{itemize}
-
-}
 
 
 \frame
 {
-  \frametitle{LSEARCH algorithm}
+  \frametitle{STREAM algorithm}
 
-  
+
+ Once the clustering of each chunk is done, the original data is
+ discarded, and only the {\em k} cluster centers are stored. Each
+ cluster being weighted by the sum of the weights of its members.
+
+ \bigskip
+ The number of points stored in memory at any given time is {\em ik},
+ where {\em i} is the number of chunks of data processed and {\em k}
+ is the number of clusters.
+
+ \bigskip
+ If the number of points in memory becomes too large, at any point we
+ can cluster the {\em ik} clusters to reduce the data to just {\em k}
+ clusters.
 
 }
+
+
+\frame
+    {
+      \frametitle{LSEARCH algorithm}
+      \begin{enumerate}
+      \item Find a value for the facility cost that results in desired k
+        \begin{itemize}
+        \item {\bf inputs:} dataset, z-min, z-max
+        \item {\bf ouput:} k
+        \end{itemize}
+
+      \item Find an initial solution
+        \begin{itemize}
+        \item {\bf inputs:} dataset, z
+        \item {\bf output:} a solution, consisting of a list of
+          centres and an assignment function
+        \end{itemize}
+        
+      \item Facility location
+        \begin{itemize}
+        \item {\bf inputs:} dataset, distance metric, z, epsilon, initial solution (centres
+        and assignment function)
+        \item {\bf ouput:} a set of facilities (clusters centres) and a function
+          that assigns datapoints to clusters.
+        \end{itemize}
+   \end{enumerate}
+    }
 
 
 \section{Comparison with existing methods}
