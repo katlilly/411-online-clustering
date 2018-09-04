@@ -21,15 +21,25 @@
 
 \frame
 {
-  \frametitle{Introduction - Data stream model}
-  
-  Data stream models are mainly preferred when they are based around a large data stream:
+  \frametitle{Introduction - Datasets vs Data streams}
 
+  Datasets
   \begin{itemize}
-    \item large volume of data is arriving continuously.
-    \item unnecessary or impractical to store data in memory.
+    \item large collection of stored data (static).
+    \item Appropriate for clustering that query dataset repeatedly.
     \newline
   \end{itemize}
+
+  Data stream:
+  \begin{itemize}
+    \item large volume of data is arriving continuously (dynamic).
+    \item unnecessary or impractical to store data in memory.
+  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Introduction - Data stream model}
 
   Data stream models are mainly restricted by:
   \begin{itemize}
@@ -41,12 +51,7 @@
   This paper by O'Callaghan et al. (2002) describes a streaming
   algorthim that effectively clusters large data streams.
 
-  %NOTES:
-  % 
-  % dataset -> stored set of data, appropriate for clustering models that query data set again and again.
-  % data stream -> approriate model when large volume of data arrives continuously
-  % item 1: 
-  % item 2: 
+  %NOTES: 
   % item 3: random access to memory not allowed.
   % item 4: limited amount of information can be stored.
   % challenge is to perform meaningful computations within these restrictions.
