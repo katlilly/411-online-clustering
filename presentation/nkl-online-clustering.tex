@@ -16,7 +16,7 @@
 \section[Outline]{}
 \frame{\tableofcontents}
 
-\section{Introduction, Background - Noel's bit}
+\section{Introduction, Background}
 
 \frame
 {
@@ -53,13 +53,34 @@
 
 \frame
 {
-  \frametitle{Background - Related Works}
+  \frametitle{Application Example - Intrusion Detection}
   
+  They were able to demonstrate network intrusion detection. \newline
 
-  %NOTES:
+  Dataset:
+  \begin{itemize}
+    \item KDD-CUP99 dataset (743 MB, simulates intrusion in military networks)
+    \item Dataset contains raw TCP dump data.
+    \item Contains 42 attributes like TCP connection duration, failed login attempts, etc.
+    \newline
+  \end{itemize}
 }
 
-\section{The new algorithm described in this paper - Kat's bit}
+\frame
+{
+  \frametitle{Application Example - Intrusion Detection}
+
+  They were able to demonstrate network intrusion detection. \newline
+
+  Simulation:
+  \begin{itemize}
+    \item Simulated network stream by processing dataset in 16MB chunks.
+    \item Their algorithm clustered data into 5 clusters (4 types of attacks and no attack).
+    \item DDOS, password guessing, unauthorized access to root, probing (port scanning). 
+  \end{itemize}
+}
+
+\section{The new algorithm described in this paper}
 
 \frame
 {
@@ -170,7 +191,7 @@
 }
 
 
-\section{Comparison with existing methods - Loren's bit}
+\section{Comparison with existing methods}
 \frame
 {
   \frametitle{Comparison with other methods}
