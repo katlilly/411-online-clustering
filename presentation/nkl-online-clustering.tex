@@ -243,12 +243,14 @@
 \frame
 {
   \frametitle{Comparison with other methods}
-  To assess the performance of their new clustering and streaming algorithms, O'Callaghan et al. compare them to existing techniques.
+  To assess the performance of STREAM and LSEARCH, O'Callaghan et al. compare them to existing techniques.
   
   \bigskip 
   \begin{itemize}
-  \item{LSEARCH performs a similar function to k-means}
-  \item{STREAM performs a similar function to BIRCH
+  \item{\textbf{LSEARCH} is compared to \textbf{k-means}.}
+  
+  \bigskip
+  \item{\textbf{STREAM} is compared to \textbf{BIRCH.}
     \begin{itemize}
       \item{BIRCH - balanced iterative reducing and clustering using hierarchies - is another streaming algorithm which uses a clustering algorithm as a sub-routine.}
     \end{itemize}
@@ -261,14 +263,16 @@
 {
   \frametitle{LSEARCH vs k-means}
   
+  To compare \textbf{LSEARCH} and \textbf{k-means}, they:
+  
   \begin{columns}
   
     \begin{column}{0.5\textwidth}
        \begin{itemize}
-          \item{Generated 28 small data-sets with between 5 and 16 uniform density spheres}
-          \item{For each data-set, calculate SSQ to use as an upper-bound for the optimal SSQ}
-          \item{Overlay each data-set with random noise}
-          \item{Run LSEARCH and k-means 10 times over each data-set}
+          \item{Generated 28 small data-sets with between 5 and 16 uniform density spheres.}
+          \item{Caalculated the SSQ to use as an upper-bound for the optimal SSQ for each data-set.}
+          \item{Added random noise to each data-set.}
+          \item{Ran LSEARCH and k-means 10 times over each data-set.}
       \end{itemize}
     \end{column}
     
@@ -285,21 +289,21 @@
 {
   \frametitle{LSEARCH vs k-means - results}
   % Include results on high dimensional data-sets? Talks about how LSEARCH finds better solution in the same time it takes k-means to find a solution
-  
+  Their results show that:
   \begin{columns}
   
     \begin{column}{0.4\textwidth}
     	  \begin{itemize}
-    	  	\item[]{k-means:
+    	  	\item[]{\textbf{k-means}:
     	  	  \begin{itemize}
-    	  	    \item{Fails to distinguish two close centers}
-    	  	    \item{Easily distracted by random noise}
-    	  	    \item{Comparatively high variance in SSQ}
+    	  	    \item{Fails to distinguish two close centers.}
+    	  	    \item{Is easily distracted by random noise.}
+    	  	    \item{Generates comparatively high variance in SSQ.}
     	  	  \end{itemize}
     	  	}
-    	  	\item[]{LSEARCH:
+    	  	\item[]{\textbf{LSEARCH}:
     	  	  \begin{itemize}
-    	  	    \item{Low variance in SSQ across all data-sets, consistently close to optimal}
+    	  	    \item{Generates low variance in SSQ across all data-sets, consistently close to optimal.}
     	  	  \end{itemize}
     	  	}
     	  \end{itemize}
@@ -320,18 +324,27 @@
 {
   \frametitle{STREAM vs BIRCH}
 %  BIRCH uses a CF-tree to compress a large set of data. The leaves of the CF-tree contain sufficient statistics for a subset of points. A clustering algorithm then clusters the leaf entries. Both STREAM and BIRCH repeatedly pre-cluster the data. 
-
+  To compare \textbf{STREAM} with \textbf{BIRCH}, they:
+  
+  \bigskip
   \begin{itemize}
-	\item{Generated data-set with $50,000$ $40$-dimensional points, arranged in clusters with overlaid random noise.}
-	\item{Clustered the data-set 10 times using each of:
+	\item{Generated a data-set with $50,000$ $40$-dimensional points arranged in clusters, and added random noise.}
+	
+	\bigskip
+	\item{Generated 4 sets of varying size from the data-set.}
+	
+	\bigskip
+	\item{Clustered each set 10 times using each of:
 	  \begin{itemize}
-	  	\item{BIRCH with k-means}
-	  	\item{BIRCH with LSEARCH}
-	  	\item{STREAM with k-means}
-	  	\item{STREAM with LSEARCH}
+	  	\item{\textbf{BIRCH} with \textbf{k-means}}
+	  	\item{\textbf{BIRCH} with \textbf{LSEARCH}}
+	  	\item{\textbf{STREAM} with \textbf{k-means}}
+	  	\item{\textbf{STREAM} with \textbf{LSEARCH}}
 	  \end{itemize}	   
 	}
-	\item{SSQ and CPU run-time were used as comparison factors}
+	
+	\bigskip
+	\item{Recorded the average SSQ and CPU run-time for each method.}
   \end{itemize}
 
 }
@@ -357,10 +370,29 @@
   \end{columns}  
   
   \bigskip
-  STREAM with k-means gives the best balance between low CPU time and low SSQ. STREAM with LSEARCH finds the closest solution to optimal, but with the highest CPU time. BIRCH with k-means gives the best CPU time but the worst SSQ.
+  \begin{itemize}
+  	\item{STREAM with LSEARCH find near optimal SSQ, but with the highest CPU time.}
+  	\item{BIRCH with k-means gives the best CPU time but the worst SSQ.}
+  	\item{STREAM with k-means gives the best balance between low CPU time and low SSQ. }
+  \end{itemize}
+   
 }
 
-
+\frame{
+  \frametitle{Summary}
+  
+  O'Callaghan et al. have created two new algorithms, \textbf{STREAM} and \textbf{LSEARCH}.
+  
+  \bigskip
+  Their experiments demonstrated that:
+  
+    \begin{itemize}
+      \item{LSEARCH can cluster data more carefully than k-means, with the cost of longer run-time.}
+      \item{LSEARCH can find a better solution than k-means in the same amount of time.}
+      \item{STREAM can cluster data-streams more effectively than BIRCH, regardless of the clustering sub-routine used.}
+      \item{STREAM takes significantly longer than BIRCH.}
+	\end{itemize}    
+}
 
 \frame[t]{
   \frametitle{References}
