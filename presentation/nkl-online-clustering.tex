@@ -94,19 +94,36 @@
 \frame
 {
   \frametitle{The Clustering Problem}
-
-  The problem this paper focuses on is the following version of the
-  clustering problem: 
+  
+  The {\em k-median problem} is to choose $k$ points, $c_1, ..., c_k$, 
+  in a data-set $N$ which minimises 
+  
+  \begin{center}
+  	$\sum_{i=1}^k \sum_{x \in N_i} d(x, c_i)$,
+  \end{center}
+  
+  
+  where each item is assigned to the nearest $c$, $N_i$ is the set of
+  items which currently belong to class $i$, and $d$ is some distance metric. 
+    
+  \bigskip
+  This paper focuses on the {\em SSQ minimization problem}, which is identical to 
+  the {\em k-median problem} except that: 
   
   \begin{itemize}
-  \item given an integer {\em k} and a dataset {\em N}, find {\em k}
-    cluster centers and assign each {\em n} to the nearest centre
-  \item measure the quality of the clustering by the sum of the
-    squared distances (SSQ) of the data points to their assigned centers.
-  \item Find an optimal or near optimal solution by minimising SSQ.
+  \item The cluster centers ($c_i$) do not need to be data points 
+  \item The sum of the squared distances (SSQ) of the data points to
+   their assigned centers is the distance metric ($d$), and gives a 
+   measure of the clustering quality
+  \item An optimal or near optimal solution is found by minimising SSQ
   \end{itemize}
+  
+}
 
-  The general K-median problem is an NP-hard problem, but there are
+\frame{
+  \frametitle{The Clustering Problem Continued}
+
+  The general k-median problem is an NP-hard problem, but there are
   various algorithms for SSQ minimisation that produce near-optimal
   solutions in near-linear time.
 
@@ -188,7 +205,6 @@
 }
 
 
-
 \frame
 {
   \frametitle{STREAM algorithm}
@@ -208,6 +224,19 @@
  can cluster the {\em ik} clusters to reduce the data to just {\em k}
  clusters.
 
+}
+
+
+\frame
+{
+  \frametitle{STREAM Algorithm}
+  Here is a visual representation of how STREAM might find two cluster
+  centers for a data-set with 20 items
+  
+  \bigskip
+  \begin{center}
+  \includegraphics[width=\textwidth]{figures/STREAM}      
+  \end{center}
 }
 
 
