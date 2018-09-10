@@ -239,10 +239,41 @@
   \end{center}
 }
 
+\frame
+{
+  \frametitle{LSEARCH - finding a good initial solution}
+  
+  LSEARCH probabilistically finds an initial solution:
+  
+  \bigskip
+  \begin{enumerate}
+  	\item{Randomly orders the data-points}
+  	\item{Makes the first point a cluster center}
+  	\item{For each subsequent point, create a new cluster center
+  	at this point with probability $d/z$ where $d$ is the distance to 
+  	the nearest existing center and $z$ is the facility cost}
+  \end{enumerate}
+  
+}
+
+\frame
+{
+  \frametitle{LSEARCH - Facility location}
+  To improve the solution, LSEARCH:
+  
+  \bigskip
+  \begin{enumerate}
+  	\item{Randomly selects some points as feasible cluster centers}
+  	\item{For each feasible center, computes the change in cost with a center 
+  	here. If having a center here will reduce the cost, this point becomes a new facility
+  	center.}
+  	\item{Performs reassignments and facility closures as necessary. }
+  \end{enumerate}
+}
 
 \frame
     {
-      \frametitle{LSEARCH algorithm}
+      \frametitle{LSEARCH algorithm - overview}
       \begin{enumerate}
       \item Find a value for the facility cost that results in desired k
         \begin{itemize}
@@ -266,7 +297,7 @@
         \end{itemize}
    \end{enumerate}
     }
-
+    
 
 \section{Comparison with existing methods}
 \frame
